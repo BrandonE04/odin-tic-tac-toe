@@ -4,37 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
-    <script src="scripts.js"></script>
+    <script src="scripts.js" defer></script>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
+        <div class="information"> 
+            <form action="">
+                <div class="holder">
+                    <label for="playerOneName">Player One Name</label>
+                    <input type="text" id="playerOneName">
+                </div>
+                <div class="holder">
+                    <label for="playerTwoName">Player Two Name</label>
+                    <input type="text" id="playerTwoName">
+                </div>
+            </form> 
+            <div class="holder">
+                <button class="reset">Reset</button>
+            </div>
+            <div class="holder">
+                <p class="display">Player 1's Turn</p>
+            </div>
+        </div>
+
         <div class="scoreboard">
-            <div class="box">
-                <p class="symbol">X</p>
-            </div>
-            <div class="box">
-                <p class="symbol">O</p>
-            </div>
-            <div class="box">
+            <div class="box" x="0" y="0">
                 <p class="symbol"></p>
             </div>
-            <div class="box">
+            <div class="box" x="1" y="0">
                 <p class="symbol"></p>
             </div>
-            <div class="box">
+            <div class="box" x="2" y="0">
                 <p class="symbol"></p>
             </div>
-            <div class="box">
+            <div class="box" x="0" y="1">
                 <p class="symbol"></p>
             </div>
-            <div class="box">
+            <div class="box" x="1" y="1">
                 <p class="symbol"></p>
             </div>
-            <div class="box">
+            <div class="box" x="2" y="1">
                 <p class="symbol"></p>
             </div>
-            <div class="box">
+            <div class="box" x="0" y="2">
+                <p class="symbol"></p>
+            </div>
+            <div class="box" x="1" y="2">
+                <p class="symbol"></p>
+            </div>
+            <div class="box" x="2" y="2">
                 <p class="symbol"></p>
             </div>
         </div>

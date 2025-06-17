@@ -2,7 +2,13 @@
     box-sizing: border-box;
 }
 .container{
-    display: grid;
+    display: flex;
+}
+.information{
+    margin-right: 20px;
+}
+.holder{
+    margin: 10px;
 }
 .scoreboard{
     background-color: white;
@@ -15,7 +21,9 @@
     justify-self: center;
     gap: 15px;
 }
-
+.display{
+    font-size: 2em;
+}
 .box{
     background-color: black;
     color: white;

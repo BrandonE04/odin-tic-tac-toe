@@ -66,29 +66,88 @@ function createGame(){
         const givePlayerName = () => console.log(playerName + " " 
             + playerSymbol);
 
-        const takeTurn = (x,y) => {
+        const takeTurn = (x,y,box) => {
             if(scoreboard[x][y] === null){
+                const symbolBox = document.createElement("p");
+                symbolBox.setAttribute("class", "symbol");
+                symbolBox.textContent = symbol;
                 scoreboard[x][y] = symbol;
+                box.appendChild(symbolBox);
             } 
         }
 
         return {getPlayerScore, givePlayerScore, givePlayerName, takeTurn};
     }
 
+    function reset(){
+        symbols = document.querySelectorAll(".symbol");
+
+        scoreboard = [
+        [null, null, null],
+        [null, null, null],
+        [null, null, null]
+        ];
+
+        for(symbol of symbols){
+            symbol.parentNode.removeChild(symbol);
+        }
+    }
+
+    
+
     const playerOne = Player("One", "X");
     const playerTwo = Player("Two", "O");
 
-    return{playerOne, playerTwo, printScoreboard, checkWin}
+    return{playerOne, playerTwo, printScoreboard, checkWin, reset}
 }
 
 function playGame(){
-    game = createGame();
+    const game = createGame();
+    const boxes = document.querySelectorAll(".box");
+    const display = document.querySelector(".display");
+    const reset = document.querySelector(".reset");
 
-    while(game.checkWin() === false){
-        game.playerOne.takeTurn();
-        game.playerTwo.takeTurn();
+    for(box of boxes){
+        box.addEventListener("click", playTurn)
+    }
+
+    reset.addEventListener("click", game.reset);
+
+    let oddTurn = true;
+
+    function playTurn(){
+        if(oddTurn){
+            game.playerOne.takeTurn(this.getAttribute("x"), this.getAttribute("y"), this);
+            oddTurn = false;
+
+            if(game.checkWin()){
+                display.innerText = "Player 1 wins!";
+            }
+            else{
+                display.innerText = "Player 2's Turn";
+            }
+        }
+        else{
+            game.playerTwo.takeTurn(this.getAttribute("x"), this.getAttribute("y"), this);
+            oddTurn = true;
+
+            if(game.checkWin()){
+                display.innerText = "Player 2 wins!";
+            }
+            else{
+                display.innerText = "Player 1's Turn";
+            }
+        }
+        
     }
 }
+
+playGame();
+
+
+
+
+
 
 
 
