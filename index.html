@@ -10,14 +10,17 @@
 <body>
     <div class="container">
         <div class="information"> 
-            <form action="">
+            <form onsubmit="return game.namePlayers()" name="playerNames">
                 <div class="holder">
                     <label for="playerOneName">Player One Name</label>
-                    <input type="text" id="playerOneName">
+                    <input type="text" id="playerOneName" name="playerOneName">
                 </div>
                 <div class="holder">
                     <label for="playerTwoName">Player Two Name</label>
-                    <input type="text" id="playerTwoName">
+                    <input type="text" id="playerTwoName" name="playerTwoName">
+                </div>
+                <div class="holder">
+                    <input type="submit" id="submit">
                 </div>
             </form> 
             <div class="holder">

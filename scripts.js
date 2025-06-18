@@ -57,14 +57,10 @@ function createGame(){
     }
 
     function Player(name, symbol){
-        let playerScore = 0;
         let playerName = name;
         let playerSymbol = symbol;
-
-        const getPlayerScore = () => playerScore;
-        const givePlayerScore = () => playerScore++;
-        const givePlayerName = () => console.log(playerName + " " 
-            + playerSymbol);
+        const getName = () => {return playerName};
+        const setName = (name) => {playerName = name};
 
         const takeTurn = (x,y,box) => {
             if(scoreboard[x][y] === null){
@@ -76,7 +72,7 @@ function createGame(){
             } 
         }
 
-        return {getPlayerScore, givePlayerScore, givePlayerName, takeTurn};
+        return {getName, setName, takeTurn};
     }
 
     function reset(){
@@ -93,12 +89,20 @@ function createGame(){
         }
     }
 
-    
+    let playerOneName = "One";
+    let playerTwoName = "Two";
 
-    const playerOne = Player("One", "X");
-    const playerTwo = Player("Two", "O");
+    function namePlayers(){
+        playerOne.setName(document.forms["playerNames"]["playerOneName"].value);
+        playerTwo.setName(document.forms["playerNames"]["playerTwoName"].value); 
 
-    return{playerOne, playerTwo, printScoreboard, checkWin, reset}
+        return false;
+    }
+      
+    const playerOne = Player(playerOneName, "X");
+    const playerTwo = Player(playerTwoName, "O");
+
+    return{playerOne, playerTwo, printScoreboard, checkWin, reset, namePlayers}
 }
 
 function playGame(){
@@ -121,10 +125,10 @@ function playGame(){
             oddTurn = false;
 
             if(game.checkWin()){
-                display.innerText = "Player 1 wins!";
+                display.innerText = game.playerOne.getName() + " wins!";
             }
             else{
-                display.innerText = "Player 2's Turn";
+                display.innerText = game.playerTwo.getName() + "'s Turn";
             }
         }
         else{
@@ -132,17 +136,19 @@ function playGame(){
             oddTurn = true;
 
             if(game.checkWin()){
-                display.innerText = "Player 2 wins!";
+                display.innerText = game.playerTwo.getName() + " wins!";
             }
             else{
-                display.innerText = "Player 1's Turn";
+                display.innerText = game.playerOne.getName() + "'s Turn";
             }
         }
         
     }
+
+    return game;
 }
 
-playGame();
+const game = playGame();
 
 
 
